@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react'
 
 export const AppContext = createContext()
 const AppProvider = ({ children }) => {
-	const [user, setUser] = useState(100)
+	const [user, setUser] = useState(10)
 
 	return <AppContext.Provider value={{ user }}>{children}</AppContext.Provider>
 }

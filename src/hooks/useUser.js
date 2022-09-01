@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { httpGetPosts } from './requests'
-import data from '../data'
+import posts from '../post.json'
 
 const useUser = (user) => {
-	const [Posts, setPosts] = useState(data)
+	const [Posts, setPosts] = useState(posts)
 	const navigate = useNavigate()
 
 	const getPosts = async () => {

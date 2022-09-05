@@ -6,7 +6,7 @@
 		"postTitle": "How to level up your career as a nodejs backend developer one",
 		"postId": 1,
 		"postContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla soluta sed doloribus provident ex eum, dolorum corporis qui non, dignissimos voluptates in quo labore deleniti necessitatibus, voluptatibus magnam tenetur recusandae voluptate esse distinctio aperiam earum dolores. Nam aliquid est vero consectetur iusto soluta delectus fugit. Vitae sequi animi mollitia ducimus minus explicabo molestias similique delectus.",
-		"likes": 5,
+		"likes": [10, 5, 1],
 		"comments": ["comment test 1", "comment test 2", "comment test 3"],
 		"postDate": 1661941538000
 	},
@@ -14,10 +14,10 @@
 		"profilePicture": "https://lh3.googleusercontent.com/a/AItbvmleUO724IgMmoUY72QvbtYNeRcIW81fCjvSK_5c=s96-c",
 		"profileName": "jacob Korede",
 		"userID": 5,
-		"postTitle": "How to level up your career as a nodejs backend developer one",
+		"postTitle": "How to level up your career",
 		"postId": 2,
 		"postContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla soluta sed doloribus provident ex eum, dolorum corporis qui non, dignissimos voluptates in quo labore deleniti necessitatibus, voluptatibus magnam tenetur recusandae voluptate esse distinctio aperiam earum dolores. Nam aliquid est vero consectetur iusto soluta delectus fugit. Vitae sequi animi mollitia ducimus minus explicabo molestias similique delectus.",
-		"likes": 400,
+		"likes": [5, 2],
 		"comments": ["comment test 1", "comment test 2", "comment test 3"],
 		"postDate": 1661941538000
 	},
@@ -28,7 +28,7 @@
 		"postTitle": "How to level up your career as a nodejs backend developer one",
 		"postId": 3,
 		"postContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla soluta sed doloribus provident ex eum, dolorum corporis qui non, dignissimos voluptates in quo labore deleniti necessitatibus, voluptatibus magnam tenetur recusandae voluptate esse distinctio aperiam earum dolores. Nam aliquid est vero consectetur iusto soluta delectus fugit. Vitae sequi animi mollitia ducimus minus explicabo molestias similique delectus.",
-		"likes": 54,
+		"likes": [10, 5],
 		"comments": ["comment test 1", "comment test 2", "comment test 3"],
 		"postDate": 1661941538000
 	},
@@ -39,7 +39,7 @@
 		"postTitle": "How to level up your career as a nodejs backend developer one",
 		"postId": 4,
 		"postContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla soluta sed doloribus provident ex eum, dolorum corporis qui non, dignissimos voluptates in quo labore deleniti necessitatibus, voluptatibus magnam tenetur recusandae voluptate esse distinctio aperiam earum dolores. Nam aliquid est vero consectetur iusto soluta delectus fugit. Vitae sequi animi mollitia ducimus minus explicabo molestias similique delectus.",
-		"likes": 45,
+		"likes": [5, 9, 2, 1],
 		"comments": ["comment test 1", "comment test 2", "comment test 3"],
 		"postDate": 1661941538000
 	},
@@ -50,7 +50,7 @@
 		"postTitle": "How to level up your career as a nodejs backend developer one",
 		"postId": 5,
 		"postContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla soluta sed doloribus provident ex eum, dolorum corporis qui non, dignissimos voluptates in quo labore deleniti necessitatibus, voluptatibus magnam tenetur recusandae voluptate esse distinctio aperiam earum dolores. Nam aliquid est vero consectetur iusto soluta delectus fugit. Vitae sequi animi mollitia ducimus minus explicabo molestias similique delectus.",
-		"likes": 13,
+		"likes": [13, 1, 4, 5, 10],
 		"comments": ["comment test 1", "comment test 2", "comment test 3"],
 		"postDate": 1661941538000
 	},
@@ -61,7 +61,7 @@
 		"postTitle": "How to level up your career as a nodejs backend developer one",
 		"postId": 6,
 		"postContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla soluta sed doloribus provident ex eum, dolorum corporis qui non, dignissimos voluptates in quo labore deleniti necessitatibus, voluptatibus magnam tenetur recusandae voluptate esse distinctio aperiam earum dolores. Nam aliquid est vero consectetur iusto soluta delectus fugit. Vitae sequi animi mollitia ducimus minus explicabo molestias similique delectus.",
-		"likes": 5,
+		"likes": [5],
 		"comments": ["comment test 1", "comment test 2", "comment test 3"],
 		"postDate": 1661941538000
 	}

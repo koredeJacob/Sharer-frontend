@@ -1,3 +1,5 @@
 async function httpGetPosts() {}
 
-export { httpGetPosts }
+async function httpUpdatePost() {}
+
+export { httpGetPosts, httpUpdatePost }

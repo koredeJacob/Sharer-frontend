@@ -1,17 +1,23 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import { formatDistanceToNow } from 'date-fns'
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded'
 import CommentIcon from '@mui/icons-material/Comment'
+import DeleteIcon from '@mui/icons-material/Delete'
 import { AppContext } from '../App-provider'
 import usePost from '../hooks/usePost'
 
 const PostDetails = () => {
 	const params = useParams()
-	const user = useContext(AppContext)
-	const { Posts, updateLikes } = usePost(user)
-	let postdetails = null
-	const navigate = useNavigate()
+	const { user } = useContext(AppContext)
+	const { Posts, updateLikes, deleteComment } = usePost(user)
+	let [postdetails, setpostdetails] = useState(null)
+	const [Comment, setComment] = useState('')
+
+	const addComment = (e) => {
+		e.preventDefault()
+		console.log(6)
+	}
 
 	if (Posts) {
 		const postarray = Posts.filter((post) => {
@@ -28,19 +34,20 @@ const PostDetails = () => {
 
 	const likeset = new Set(postdetails.likes)
 	return (
-		<div className='w-full flex bg-gray-200 flex-col mb-4 border border-gray-600 rounded-md space-y-1.5 justify-center items-center md:w-5/12'>
+		<div className='w-11/12 flex mx-auto mt-8 bg-gray-200 flex-col mb-4 border border-gray-600 drop-shadow-xl rounded-md space-y-1.5 justify-center items-center md:w-5/12'>
 			<div className='w-full flex rounded-t-md bg-gradient-to-r from-sky-400 to-blue-600 text-slate-100 px-4 pt-2 pb-1 border-b border-black items-center'>
 				<div>
-					<img
-						onClick={() => navigate(`/profile/${postdetails.userID}`)}
-						src={`${postdetails.profilePicture}`}
-						referrerPolicy='no-referrer'
-						className='w-9 rounded-full'
-						alt='profile picture'
-					/>
+					<Link to={`/profile/${postdetails.userID}`}>
+						<img
+							src={`${postdetails.profilePicture}`}
+							referrerPolicy='no-referrer'
+							className='w-10 rounded-full'
+							alt='profile picture'
+						/>
+					</Link>
 				</div>
 				<h5 className='ml-3 capitalize text-base font-medium'>{postdetails.profileName}</h5>
-				<p className='ml-16 pl-2 md:ml-24 text-xs font-medium'>{`${formatDistanceToNow(
+				<p className='ml-14 pl-3 md:ml-24 lg:ml-44 text-xs font-medium'>{`${formatDistanceToNow(
 					postdetails.postDate,
 					{
 						addSuffix: true
@@ -65,6 +72,41 @@ const PostDetails = () => {
 					<CommentIcon color='disabled' />
 					<p className='text-gray-600/75 text-base  font-medium'>{postdetails.comments.length}</p>
 				</div>
+			</div>
+			<div className='w-[94%]'>
+				<form onSubmit={addComment} className='w-full flex flex-row justify-start space-x-4 '>
+					<input
+						type='text'
+						value={Comment}
+						onChange={(e) => setComment(e.target.value)}
+						placeholder=' Add Comment'
+						maxLength={120}
+						className='w-8/12 border border-blue-500 '
+					/>
+					<input
+						value='comment'
+						type='submit'
+						className='bg-blue-500 px-3 py-0.5 pb-1 text-lg rounded-md text-white hover:bg-blue-600'
+					/>
+				</form>
+			</div>
+			<div className='w-full flex flex-col space-y-2 border border-t-black py-3 justify-start items-center'>
+				{postdetails.comments.map((Comment, i) => {
+					return (
+						<div
+							key={i}
+							className=' w-[90%] flex justify-between items-center border border-b-gray-400 pb-1 '
+						>
+							<p className='w-[80%] text-md text-gray-900/80 leading-5'>{Comment.comment}</p>
+							{Comment.userID === user && (
+								<DeleteIcon
+									color='primary'
+									onClick={() => deleteComment(postdetails.postId, Comment.comment)}
+								/>
+							)}
+						</div>
+					)
+				})}
 			</div>
 		</div>
 	)

@@ -7,12 +7,13 @@ import Signin from './pages/Signin'
 
 const App = () => {
 	return (
-		<div className='bg-blue-50'>
+		<div>
 			<Router>
 				<Routes>
 					<Route path='/' element={<Home />} />
 					<Route path='post/:id' element={<PostDetails />} />
 					<Route path='profile/:id' element={<Profile />} />
+					<Route path='newpost' />
 					<Route path='signin' element={<Signin />} />
 				</Routes>
 			</Router>

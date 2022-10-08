@@ -11,14 +11,14 @@ const Postpreview = ({ postid, postcontent, updateLikes }) => {
 	const { user } = useContext(AppContext)
 
 	return (
-		<div className='w-full flex bg-gray-200 flex-col mb-4 border border-gray-600 drop-shadow-xl rounded-md space-y-1.5 justify-center items-center md:w-10/12'>
+		<div className='w-full flex bg-gray-200 flex-col mb-4 border border-gray-600 drop-shadow-xl rounded-md space-y-1.5 justify-center items-center md:w-11s/12'>
 			<div className='w-full flex rounded-t-md bg-gradient-to-r from-sky-400 to-blue-600 text-slate-100 px-4 pt-2 pb-1 border-b border-black items-center'>
 				<div>
 					<Link to={`/profile/${postcontent.userID}`}>
 						<img
 							src={`${postcontent.profilePicture}`}
 							referrerPolicy='no-referrer'
-							className='w-9 rounded-full'
+							className='w-10 rounded-full'
 							alt='profile picture'
 						/>
 					</Link>

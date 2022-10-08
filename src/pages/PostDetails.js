@@ -54,7 +54,7 @@ const PostDetails = () => {
 					}
 				)}`}</p>
 			</div>
-			<div className='w-full px-4 py-2 rounded-b-md bg-gray-200 text-gray-900/90 flex flex-col space-y-2 md:space-y-3'>
+			<div className='w-full px-4 py-2.5 rounded-b-md bg-gray-200 text-gray-900/90 flex flex-col space-y-2 md:space-y-3'>
 				<h3 className='leading-5 text-xl font-medium'>{postdetails.postTitle}</h3>
 				<p className='text-start text-base leading-5 whitespace-pre-wrap'>
 					{postdetails.postContent}

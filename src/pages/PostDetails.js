@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { formatDistanceToNow } from 'date-fns'
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded'
 import CommentIcon from '@mui/icons-material/Comment'
 import DeleteIcon from '@mui/icons-material/Delete'
+import Delete from '../components/delete'
 import { AppContext } from '../App-provider'
 import usePost from '../hooks/usePost'
 
@@ -13,10 +14,18 @@ const PostDetails = () => {
 	const { Posts, updateLikes, deleteComment } = usePost(user)
 	let [postdetails, setpostdetails] = useState(null)
 	const [Comment, setComment] = useState('')
+	const [modalIsOpen, setIsOpen] = useState(false)
 
 	const addComment = (e) => {
 		e.preventDefault()
 		console.log(6)
+	}
+
+	const openModal = () => {
+		setIsOpen(true)
+	}
+	const closeModal = () => {
+		setIsOpen(false)
 	}
 
 	if (Posts) {
@@ -101,13 +110,14 @@ const PostDetails = () => {
 							{Comment.userID === user && (
 								<DeleteIcon
 									color='primary'
-									onClick={() => deleteComment(postdetails.postId, Comment.comment)}
+									onClick={() => openModal() /*deleteComment(postdetails.postId, Comment.comment)*/}
 								/>
 							)}
 						</div>
 					)
 				})}
 			</div>
+			<Delete modalIsOpen={modalIsOpen} closeModal={closeModal} />
 		</div>
 	)
 }

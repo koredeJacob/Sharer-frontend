@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const REQUEST_URL = 'http://localhost5000/v1'
+const REQUEST_URL = 'v1'
 
 async function httpGetPosts() {
 	try {
@@ -123,5 +123,6 @@ export {
 	httpDeletePost,
 	httpAddComment,
 	httpRemoveComment,
-	signin
+	signin,
+	signout
 }

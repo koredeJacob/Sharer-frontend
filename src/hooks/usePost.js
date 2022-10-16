@@ -4,11 +4,12 @@ import { httpGetPosts, httpUpdatePost } from './requests'
 import posts from '../post.json'
 
 const usePost = (user) => {
-	const [Posts, setPosts] = useState(posts)
+	const [Posts, setPosts] = useState()
 	const navigate = useNavigate()
 
 	const getPosts = async () => {
 		const fetchedPosts = await httpGetPosts()
+		console.log(fetchedPosts)
 		//setPosts(fetchedPosts)
 	}
 

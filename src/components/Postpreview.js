@@ -1,14 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { formatDistanceToNow } from 'date-fns'
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded'
 import CommentIcon from '@mui/icons-material/Comment'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { AppContext } from '../App-provider'
+import Delete from './delete'
 
 const Postpreview = ({ postid, postcontent, updateLikes }) => {
 	const likeset = new Set(postcontent.likes)
 	const { user } = useContext(AppContext)
+	const [modalIsOpen, setIsOpen] = useState(false)
+
+	const openModal = () => {
+		setIsOpen(true)
+	}
+	const closeModal = () => {
+		setIsOpen(false)
+	}
 
 	return (
 		<div className='w-full flex bg-gray-200 flex-col mb-4 border border-gray-600 drop-shadow-xl rounded-md space-y-1.5 justify-center items-center md:w-11s/12'>
@@ -52,9 +61,10 @@ const Postpreview = ({ postid, postcontent, updateLikes }) => {
 					<p className='text-gray-600/75 text-base  font-medium'>{postcontent.comments.length}</p>
 				</div>
 				<div className='w-[60%] pl-[47%] md:pl-[55%]'>
-					{postcontent.userID === user && <DeleteIcon color='primary' />}
+					{postcontent.userID === user && <DeleteIcon color='primary' onClick={openModal} />}
 				</div>
 			</div>
+			<Delete modalIsOpen={modalIsOpen} closeModal={closeModal} />
 		</div>
 	)
 }

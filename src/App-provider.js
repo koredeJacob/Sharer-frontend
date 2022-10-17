@@ -2,9 +2,12 @@ import React, { createContext, useState } from 'react'
 
 export const AppContext = createContext()
 const AppProvider = ({ children }) => {
-	const [user, setUser] = useState()
-	const [ProfilePic, setProfilePic] = useState()
+	const [user, setUser] = useState(null)
 
-	return <AppContext.Provider value={{ user, ProfilePic }}>{children}</AppContext.Provider>
+	const updateUser = (userdetails) => {
+		setUser(userdetails)
+	}
+
+	return <AppContext.Provider value={{ user, updateUser }}>{children}</AppContext.Provider>
 }
 export default AppProvider

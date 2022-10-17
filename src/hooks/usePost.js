@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { httpGetPosts, httpUpdatePost } from './requests'
+import { httpGetPosts, httpUpdatePost, httpGetUser } from './requests'
 import posts from '../post.json'
+import { AppContext } from '../App-provider'
 
-const usePost = (user) => {
-	const [Posts, setPosts] = useState()
+const usePost = () => {
+	const { user, updateUser } = useContext(AppContext)
+	const [Posts, setPosts] = useState(null)
 	const navigate = useNavigate()
 
 	const getPosts = async () => {
 		const fetchedPosts = await httpGetPosts()
-		console.log(fetchedPosts)
-		//setPosts(fetchedPosts)
+		setPosts(fetchedPosts.data)
 	}
 
 	const updateLikes = async (id) => {
@@ -57,13 +58,21 @@ const usePost = (user) => {
 	}
 
 	useEffect(() => {
-		if (!user) {
+		const handleUser = async () => {
+			if (user) {
+				console.log('2 ', user)
+				await getPosts()
+				return
+			}
+			const res = await httpGetUser()
+			updateUser(res.data)
+			console.log('1 ', user)
+			console.log('called navigate')
 			navigate('/signin')
-			return
+			console.log('3', user)
 		}
-		console.log(7)
-		getPosts()
-	}, [user])
+		handleUser()
+	}, [])
 
 	return {
 		Posts,

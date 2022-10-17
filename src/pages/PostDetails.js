@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { formatDistanceToNow } from 'date-fns'
+import { formatDistanceToNow, parseISO } from 'date-fns'
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded'
 import CommentIcon from '@mui/icons-material/Comment'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -11,7 +11,7 @@ import usePost from '../hooks/usePost'
 const PostDetails = () => {
 	const params = useParams()
 	const { user } = useContext(AppContext)
-	const { Posts, updateLikes, deleteComment } = usePost(user)
+	const { Posts, updateLikes, deleteComment } = usePost()
 	let [postdetails, setpostdetails] = useState(null)
 	const [Comment, setComment] = useState('')
 	const [modalIsOpen, setIsOpen] = useState(false)
@@ -29,6 +29,7 @@ const PostDetails = () => {
 	}
 
 	if (Posts) {
+		console.log(Posts)
 		const postarray = Posts.filter((post) => {
 			return post.postId === Number(params.id)
 		})
@@ -57,7 +58,7 @@ const PostDetails = () => {
 				</div>
 				<h5 className='ml-3 capitalize text-base font-medium'>{postdetails.profileName}</h5>
 				<p className='ml-14 pl-3 md:ml-24 lg:ml-44 text-xs font-medium'>{`${formatDistanceToNow(
-					postdetails.postDate,
+					parseISO(postdetails.postDate),
 					{
 						addSuffix: true
 					}

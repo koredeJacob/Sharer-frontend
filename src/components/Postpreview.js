@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { formatDistanceToNow } from 'date-fns'
+import { formatDistanceToNow, parseISO } from 'date-fns'
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded'
 import CommentIcon from '@mui/icons-material/Comment'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -34,7 +34,7 @@ const Postpreview = ({ postid, postcontent, updateLikes }) => {
 				</div>
 				<h5 className='ml-3 capitalize text-base font-medium'>{postcontent.profileName}</h5>
 				<p className='ml-14 pl-2 md:ml-36 lg:ml-50 2xl:ml-64 text-xs font-medium'>{`${formatDistanceToNow(
-					postcontent.postDate,
+					parseISO(postcontent.postDate),
 					{
 						addSuffix: true
 					}

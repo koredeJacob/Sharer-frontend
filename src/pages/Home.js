@@ -1,27 +1,23 @@
 import React, { useContext, useEffect } from 'react'
 import AddBoxIcon from '@mui/icons-material/AddBox'
-import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../App-provider'
 import usePost from '../hooks/usePost'
 import Postpreview from '../components/Postpreview'
 import Nav from '../components/Nav'
 
 const Home = () => {
-	const { user, updateUser } = useContext(AppContext)
-	const { Posts, updateLikes } = usePost()
+	const { user, Posts } = useContext(AppContext)
+	const { updateLikes, getPosts } = usePost()
 	const ProfilePic = 'hhh'
-	const navigate = useNavigate()
-
-	/*useEffect(() => {
-		updateUser({ k: 7 })
-		console.log(user)
-	}, [])
 
 	useEffect(() => {
-		if (!user) {
-			navigate('/signin')
+		const handlePosts = async () => {
+			if (user) {
+				await getPosts()
+			}
 		}
-	}, [])*/
+		handlePosts()
+	}, [])
 
 	if (!Posts) {
 		return <p>Loading...</p>

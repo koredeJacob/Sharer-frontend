@@ -7,14 +7,16 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import Delete from '../components/delete'
 import { AppContext } from '../App-provider'
 import usePost from '../hooks/usePost'
+import { httpGetPostById, httpUpdateLikes } from '../hooks/requests'
 
 const PostDetails = () => {
-	const params = useParams()
-	const { user } = useContext(AppContext)
-	const { Posts, updateLikes, deleteComment } = usePost()
-	let [postdetails, setpostdetails] = useState(null)
+	const [postdetails, setpostdetails] = useState(null)
 	const [Comment, setComment] = useState('')
 	const [modalIsOpen, setIsOpen] = useState(false)
+	const params = useParams()
+	const { user, Posts } = useContext(AppContext)
+
+	usePost()
 
 	const addComment = (e) => {
 		e.preventDefault()
@@ -28,7 +30,19 @@ const PostDetails = () => {
 		setIsOpen(false)
 	}
 
-	if (Posts) {
+	const updateLikes = async (id) => {
+		const response = await httpUpdateLikes(id)
+		setpostdetails(response.data)
+	}
+
+	useEffect(() => {
+		const handlePostdetails = async () => {
+			const response = await httpGetPostById(params.id)
+			setpostdetails(response.data)
+		}
+		handlePostdetails()
+	}, [])
+	/*if (Posts) {
 		console.log(Posts)
 		const postarray = Posts.filter((post) => {
 			return post.postId === Number(params.id)
@@ -37,9 +51,9 @@ const PostDetails = () => {
 			postdetails = postarray[0]
 		}
 	}
-
+*/
 	if (!postdetails) {
-		return <p>post cannot be found</p>
+		return <p>Loading...</p>
 	}
 
 	const likeset = new Set(postdetails.likes)
@@ -64,8 +78,8 @@ const PostDetails = () => {
 					}
 				)}`}</p>
 			</div>
-			<div className='w-full px-4 py-2.5 rounded-b-md bg-gray-200 text-gray-900/90 flex flex-col space-y-2 md:space-y-3'>
-				<h3 className='leading-5 text-xl font-medium'>{postdetails.postTitle}</h3>
+			<div className='w-full flex flex-col space-y-2 px-4 py-2.5 rounded-b-md bg-gray-200 text-gray-900/90 md:space-y-3'>
+				<h3 className='leading-5 text-xl text-start font-medium'>{postdetails.postTitle}</h3>
 				<p className='text-start text-base leading-5 whitespace-pre-wrap'>
 					{postdetails.postContent}
 				</p>
@@ -73,7 +87,7 @@ const PostDetails = () => {
 			<div className='w-full flex px-4 py-0.5 justify-start space-x-6 border-t border-black'>
 				<div className='flex space-x-1'>
 					<ThumbUpAltRoundedIcon
-						color={`${likeset.has(user) ? 'primary' : 'disabled'}`}
+						color={`${likeset.has(user.userID) ? 'primary' : 'disabled'}`}
 						onClick={() => updateLikes(postdetails.postId)}
 					/>
 					<p className='text-gray-600/75 text-base  font-medium'>{postdetails.likes.length}</p>
@@ -108,7 +122,7 @@ const PostDetails = () => {
 							className=' w-[90%] flex justify-between items-center border border-b-gray-400 pb-1 '
 						>
 							<p className='w-[80%] text-md text-gray-900/80 leading-5'>{Comment.comment}</p>
-							{Comment.userID === user && (
+							{Comment.userID === user.userID && (
 								<DeleteIcon
 									color='primary'
 									onClick={() => openModal() /*deleteComment(postdetails.postId, Comment.comment)*/}

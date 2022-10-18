@@ -20,7 +20,7 @@ const Postpreview = ({ postid, postcontent, updateLikes }) => {
 	}
 
 	return (
-		<div className='w-full flex bg-gray-200 flex-col mb-4 border border-gray-600 drop-shadow-xl rounded-md space-y-1.5 justify-center items-center md:w-11s/12'>
+		<div className='w-full flex bg-gray-200 flex-col mb-4 border border-gray-600 drop-shadow-xl rounded-md space-y-1.5 justify-center items-center md:w-11/12'>
 			<div className='w-full flex rounded-t-md bg-gradient-to-r from-sky-400 to-blue-600 text-slate-100 px-4 pt-2 pb-1 border-b border-black items-center'>
 				<div>
 					<Link to={`/profile/${postcontent.userID}`}>
@@ -40,9 +40,9 @@ const Postpreview = ({ postid, postcontent, updateLikes }) => {
 					}
 				)}`}</p>
 			</div>
-			<Link to={`/post/${postcontent.postId}`}>
+			<Link className='w-full' to={`/post/${postid}`}>
 				<div className='w-full px-4 py-2 rounded-b-md bg-gray-200 text-gray-900/90 flex flex-col space-y-2 md:space-y-3'>
-					<h3 className='leading-5 text-xl font-medium'>{postcontent.postTitle}</h3>
+					<h3 className='leading-5 text-xl text-start font-medium'>{postcontent.postTitle}</h3>
 					<p className='line-clamp-3 text-start text-base leading-5 whitespace-pre-wrap'>
 						{postcontent.postContent}
 					</p>
@@ -51,7 +51,7 @@ const Postpreview = ({ postid, postcontent, updateLikes }) => {
 			<div className='w-full flex px-4 py-0.5 justify-start items-center space-x-6 border-t border-black'>
 				<div className='flex space-x-1'>
 					<ThumbUpAltRoundedIcon
-						color={`${likeset.has(user) ? 'primary' : 'disabled'}`}
+						color={`${likeset.has(user.userID) ? 'primary' : 'disabled'}`}
 						onClick={() => updateLikes(postcontent.postId)}
 					/>
 					<p className='text-gray-600/75 text-base  font-medium'>{postcontent.likes.length}</p>

@@ -1,17 +1,16 @@
 import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { httpGetPosts, httpUpdatePost, httpGetUser } from './requests'
+import { httpGetPosts, httpUpdatePost, httpGetUser, httpUpdateLikes } from './requests'
 import posts from '../post.json'
 import { AppContext } from '../App-provider'
 
 const usePost = () => {
-	const { user, updateUser } = useContext(AppContext)
-	const [Posts, setPosts] = useState(null)
+	const { user, updateUser, Posts, updatePosts } = useContext(AppContext)
 	const navigate = useNavigate()
 
 	const getPosts = async () => {
 		const fetchedPosts = await httpGetPosts()
-		setPosts(fetchedPosts.data)
+		updatePosts(fetchedPosts.data)
 	}
 
 	const updateLikes = async (id) => {
@@ -19,10 +18,10 @@ const usePost = () => {
 			return post.postId === id
 		})
 		const mutatedset = new Set(mutatedpost[0].likes)
-		if (mutatedset.has(user)) {
-			mutatedset.delete(user)
+		if (mutatedset.has(user.userID)) {
+			mutatedset.delete(user.userID)
 		} else {
-			mutatedset.add(user)
+			mutatedset.add(user.userID)
 		}
 		mutatedpost[0].likes = [...mutatedset]
 		const updatedposts = Posts.map((post) => {
@@ -31,8 +30,8 @@ const usePost = () => {
 			}
 			return post
 		})
-		setPosts(updatedposts)
-		//const response = await httpUpdatePost(mutatedpost)
+		updatePosts(updatedposts)
+		const response = await httpUpdateLikes(id)
 	}
 
 	const deleteComment = async (postid, delcomment) => {
@@ -53,31 +52,28 @@ const usePost = () => {
 			}
 			return post
 		})
-		setPosts(updatedposts)
+		updatePosts(updatedposts)
 		//const response = await httpUpdatePost(mutatedpost)
 	}
 
 	useEffect(() => {
 		const handleUser = async () => {
-			if (user) {
-				console.log('2 ', user)
-				await getPosts()
-				return
+			if (!user) {
+				const res = await httpGetUser()
+				updateUser(res.data)
+				console.log('1 ', user)
+				console.log('called navigate')
+				navigate('/signin')
+				console.log('3', user)
 			}
-			const res = await httpGetUser()
-			updateUser(res.data)
-			console.log('1 ', user)
-			console.log('called navigate')
-			navigate('/signin')
-			console.log('3', user)
 		}
 		handleUser()
 	}, [])
 
 	return {
-		Posts,
 		updateLikes,
-		deleteComment
+		deleteComment,
+		getPosts
 	}
 }
 

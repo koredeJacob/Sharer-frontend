@@ -11,7 +11,7 @@ const Signin = () => {
 	useEffect(() => {
 		console.log(user, 'jj')
 		if (user) {
-			navigate('/')
+			navigate(-1)
 		}
 	}, [])
 

@@ -59,18 +59,13 @@ const PostDetails = () => {
 		}
 		handlePostdetails()
 	}, [])
-	/*if (Posts) {
-		console.log(Posts)
-		const postarray = Posts.filter((post) => {
-			return post.postId === Number(params.id)
-		})
-		if (postarray.length === 1) {
-			postdetails = postarray[0]
-		}
-	}
-*/
+
 	if (!postdetails) {
-		return <p>Loading...</p>
+		return (
+			<p className='w-[25%] mt-[40%] mx-auto text-xl text-center font-medium md:mt-[26%]'>
+				Loading...
+			</p>
+		)
 	}
 
 	const likeset = new Set(postdetails.likes)

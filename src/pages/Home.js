@@ -4,11 +4,11 @@ import { AppContext } from '../App-provider'
 import usePost from '../hooks/usePost'
 import Postpreview from '../components/Postpreview'
 import Nav from '../components/Nav'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
 	const { user, Posts } = useContext(AppContext)
 	const { updateLikes, getPosts } = usePost()
-	const ProfilePic = 'hhh'
 
 	useEffect(() => {
 		const handlePosts = async () => {
@@ -20,7 +20,11 @@ const Home = () => {
 	}, [])
 
 	if (!Posts) {
-		return <p>Loading...</p>
+		return (
+			<p className='w-[25%] mt-[40%] mx-auto text-xl text-center font-medium md:mt-[26%]'>
+				Loading...
+			</p>
+		)
 	}
 
 	return (
@@ -37,7 +41,9 @@ const Home = () => {
 				)
 			})}
 			<div className='fixed top-[89vh] left-[75%] z-10'>
-				<AddBoxIcon color='primary' sx={{ fontSize: '50px' }} />
+				<Link to='/newpost'>
+					<AddBoxIcon color='primary' sx={{ fontSize: '50px' }} />
+				</Link>
 			</div>
 		</div>
 	)

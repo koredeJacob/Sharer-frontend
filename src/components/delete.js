@@ -14,7 +14,13 @@ const custtomStyles = {
 	}
 }
 
-const Delete = ({ modalIsOpen, content, closeModal }) => {
+const Delete = ({
+	modalIsOpen,
+	content,
+	closeModal,
+	handleDelete = (f) => f,
+	deleteComment = (f) => f
+}) => {
 	return (
 		<div>
 			<Modal
@@ -29,7 +35,10 @@ const Delete = ({ modalIsOpen, content, closeModal }) => {
 						<button className='border border-black px-1.5 pb-1 rounded-md ' onClick={closeModal}>
 							cancel
 						</button>
-						<button className='border border-black px-1.5 pb-1 rounded-md bg-red-600 text-white'>
+						<button
+							className='border border-black px-1.5 pb-1 rounded-md bg-red-600 text-white'
+							onClick={content === 'Post' ? handleDelete : deleteComment}
+						>
 							delete
 						</button>
 					</div>

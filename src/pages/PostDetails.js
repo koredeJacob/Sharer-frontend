@@ -7,24 +7,35 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import Delete from '../components/delete'
 import { AppContext } from '../App-provider'
 import usePost from '../hooks/usePost'
-import { httpGetPostById, httpUpdateLikes } from '../hooks/requests'
+import {
+	httpGetPostById,
+	httpUpdateLikes,
+	httpAddComment,
+	httpRemoveComment
+} from '../hooks/requests'
 
 const PostDetails = () => {
 	const [postdetails, setpostdetails] = useState(null)
 	const [Comment, setComment] = useState('')
 	const [modalIsOpen, setIsOpen] = useState(false)
+	const [delcomment, setdelcomment] = useState('')
+	const { user } = useContext(AppContext)
 	const params = useParams()
-	const { user, Posts } = useContext(AppContext)
 
 	usePost()
 
-	const addComment = (e) => {
+	const addComment = async (e) => {
 		e.preventDefault()
-		console.log(6)
+		if (Comment !== '') {
+			const response = await httpAddComment(postdetails.postId, Comment)
+			setpostdetails(response.data)
+			setComment('')
+		}
 	}
 
-	const openModal = () => {
+	const openModal = (id) => {
 		setIsOpen(true)
+		setdelcomment(id)
 	}
 	const closeModal = () => {
 		setIsOpen(false)
@@ -33,6 +44,12 @@ const PostDetails = () => {
 	const updateLikes = async (id) => {
 		const response = await httpUpdateLikes(id)
 		setpostdetails(response.data)
+	}
+
+	const deleteComment = async () => {
+		const response = await httpRemoveComment(postdetails.postId, delcomment)
+		setpostdetails(response.data)
+		closeModal()
 	}
 
 	useEffect(() => {
@@ -125,14 +142,22 @@ const PostDetails = () => {
 							{Comment.userID === user.userID && (
 								<DeleteIcon
 									color='primary'
-									onClick={() => openModal() /*deleteComment(postdetails.postId, Comment.comment)*/}
+									onClick={
+										() =>
+											openModal(Comment._id) /*deleteComment(postdetails.postId, Comment.comment)*/
+									}
 								/>
 							)}
 						</div>
 					)
 				})}
 			</div>
-			<Delete modalIsOpen={modalIsOpen} closeModal={closeModal} />
+			<Delete
+				modalIsOpen={modalIsOpen}
+				closeModal={closeModal}
+				deleteComment={deleteComment}
+				content='comment'
+			/>
 		</div>
 	)
 }

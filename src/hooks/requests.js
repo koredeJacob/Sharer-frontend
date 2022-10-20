@@ -70,6 +70,7 @@ async function httpAddComment(id, comment) {
 		const response = await axios.put(`${REQUEST_URL}/posts/addcomment/${id}`, {
 			comment
 		})
+		return response
 	} catch (error) {
 		console.log(error)
 		return {

@@ -6,10 +6,12 @@ import CommentIcon from '@mui/icons-material/Comment'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { AppContext } from '../App-provider'
 import Delete from './delete'
+import { httpDeletePost } from '../hooks/requests'
+import { httpGetPosts } from '../hooks/requests'
 
 const Postpreview = ({ postid, postcontent, updateLikes }) => {
 	const likeset = new Set(postcontent.likes)
-	const { user } = useContext(AppContext)
+	const { user, updatePosts } = useContext(AppContext)
 	const [modalIsOpen, setIsOpen] = useState(false)
 
 	const openModal = () => {
@@ -17,6 +19,13 @@ const Postpreview = ({ postid, postcontent, updateLikes }) => {
 	}
 	const closeModal = () => {
 		setIsOpen(false)
+	}
+
+	const handleDelete = async () => {
+		await httpDeletePost(postid)
+		const newposts = await httpGetPosts()
+		updatePosts(newposts.data)
+		closeModal()
 	}
 
 	return (
@@ -61,10 +70,15 @@ const Postpreview = ({ postid, postcontent, updateLikes }) => {
 					<p className='text-gray-600/75 text-base  font-medium'>{postcontent.comments.length}</p>
 				</div>
 				<div className='w-[60%] pl-[47%] md:pl-[55%]'>
-					{postcontent.userID === user && <DeleteIcon color='primary' onClick={openModal} />}
+					{postcontent.userID === user.userID && <DeleteIcon color='primary' onClick={openModal} />}
 				</div>
 			</div>
-			<Delete modalIsOpen={modalIsOpen} closeModal={closeModal} />
+			<Delete
+				modalIsOpen={modalIsOpen}
+				closeModal={closeModal}
+				content='Post'
+				handleDelete={handleDelete}
+			/>
 		</div>
 	)
 }

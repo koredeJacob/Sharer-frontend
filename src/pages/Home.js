@@ -10,25 +10,25 @@ const Home = () => {
 	const { user, Posts } = useContext(AppContext)
 	const { updateLikes, getPosts } = usePost()
 
-	useEffect(() => {
+	/*useEffect(() => {
 		const handlePosts = async () => {
 			if (user) {
 				await getPosts()
 			}
 		}
 		handlePosts()
-	}, [])
+	}, [])*/
 
 	if (!Posts) {
 		return (
-			<p className='w-[25%] mt-[40%] mx-auto text-xl text-center font-medium md:mt-[26%]'>
+			<p className='w-[100%] mt-[40%] mx-auto text-white text-xl text-center font-medium md:mt-[26%]'>
 				Loading...
 			</p>
 		)
 	}
 
 	return (
-		<div className='w-12/12 relative py-6 px-6 flex flex-col border-4 border-black mx-auto mt-10 items-center justify-center md:w-9/12 lg:w-8/12 xl:w-5/12 md:flex-wrap md:justify-evenly md:text-lg'>
+		<div className='w-12/12 relative py-6 px-6 flex flex-col mx-auto mt-10 items-center justify-center md:w-9/12 lg:w-8/12 xl:w-5/12 md:flex-wrap md:justify-evenly md:text-lg'>
 			<Nav ProfilePic={user.profilePicture} />
 			{Posts.map((post) => {
 				return (

@@ -2,7 +2,7 @@
 	{
 		"profilePicture": "https://lh3.googleusercontent.com/a/AItbvmleUO724IgMmoUY72QvbtYNeRcIW81fCjvSK_5c=s96-c",
 		"profileName": "jacob Korede",
-		"userID": 10,
+		"userID": 1,
 		"postTitle": "How",
 		"postId": 1,
 		"postContent": "Lor",
@@ -10,15 +10,21 @@
 		"comments": [
 			{
 				"userID": 10,
-				"comment": "comment test 1"
-			},
-			{
-				"userID": 10,
-				"comment": "comment test 1"
+				"comment": "comment test 1",
+				"userName": "korede jacob",
+				"userPicture": "https://lh3.googleusercontent.com/a/AItbvmleUO724IgMmoUY72QvbtYNeRcIW81fCjvSK_5c=s96-c"
 			},
 			{
 				"userID": 1,
-				"comment": "comment test 3 jjjnjhhuh jbjhuh nj jhiy"
+				"comment": "comment test 1",
+				"userName": "monkey work",
+				"userPicture": "https://lh3.googleusercontent.com/a/AItbvmleUO724IgMmoUY72QvbtYNeRcIW81fCjvSK_5c=s96-c"
+			},
+			{
+				"userID": 1,
+				"comment": "comment test 3 jhujkj uhijjjnjhhuh jbjhuh nj jhiy",
+				"userName": "monkey sleeps",
+				"userPicture": "https://lh3.googleusercontent.com/a/AItbvmleUO724IgMmoUY72QvbtYNeRcIW81fCjvSK_5c=s96-c"
 			}
 		],
 		"postDate": "2022-09-17T21:44:02.871Z"
@@ -109,7 +115,7 @@
 	{
 		"profilePicture": "https://lh3.googleusercontent.com/a/AItbvmleUO724IgMmoUY72QvbtYNeRcIW81fCjvSK_5c=s96-c",
 		"profileName": "jacob Korede",
-		"userID": 5,
+		"userID": 1,
 		"postTitle": "How to level up your career as a nodejs backend developer one",
 		"postId": 6,
 		"postContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla soluta sed doloribus provident ex eum, dolorum corporis qui non, dignissimos voluptates in quo labore deleniti necessitatibus, voluptatibus magnam tenetur recusandae voluptate esse distinctio aperiam earum dolores. Nam aliquid est vero consectetur iusto soluta delectus fugit. Vitae sequi animi mollitia ducimus minus explicabo molestias similique delectus.",

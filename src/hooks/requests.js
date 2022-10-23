@@ -128,6 +128,18 @@ async function signout() {
 	}
 }
 
+async function httpGetUserById(id) {
+	try {
+		const response = await axios.get(`${REQUEST_URL}/users/${id}`)
+		return response
+	} catch (error) {
+		console.log(error)
+		return {
+			ok: false
+		}
+	}
+}
+
 export {
 	httpGetPosts,
 	httpAddNewPost,
@@ -137,6 +149,7 @@ export {
 	httpAddComment,
 	httpRemoveComment,
 	httpGetUser,
+	httpGetUserById,
 	signin,
 	signout
 }

@@ -28,7 +28,7 @@ const Newpost = () => {
 		<div className='w-10/12 mx-auto mt-9'>
 			<form className='flex flex-col' onSubmit={handleSubmit}>
 				<div>
-					<label htmlFor='title' className='font-medium text-gray-500 '>
+					<label htmlFor='title' className='font-medium text-gray-300 '>
 						Post Title:
 					</label>
 					<br />
@@ -45,7 +45,7 @@ const Newpost = () => {
 					/>
 				</div>
 				<div>
-					<label htmlFor='content' className='font-medium text-gray-500'>
+					<label htmlFor='content' className='font-medium text-gray-300'>
 						Post Content:
 					</label>
 					<br />
@@ -57,8 +57,8 @@ const Newpost = () => {
 						onChange={(e) => setpostContent(e.target.value)}
 					></textarea>
 				</div>
-				<p className={`text-red-600 text-center text-lg mb-0.5 ${warning}`}>
-					Post must include a title and some content!
+				<p className={`text-red-500 text-center text-lg mb-0.5 ${warning}`}>
+					Post missing a title and some content!
 				</p>
 				<input
 					type='submit'

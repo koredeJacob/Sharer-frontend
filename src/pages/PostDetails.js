@@ -15,7 +15,8 @@ import {
 } from '../hooks/requests'
 
 const PostDetails = () => {
-	const [postdetails, setpostdetails] = useState(null)
+	const { Posts } = useContext(AppContext)
+	const [postdetails, setpostdetails] = useState(Posts[0])
 	const [Comment, setComment] = useState('')
 	const [modalIsOpen, setIsOpen] = useState(false)
 	const [delcomment, setdelcomment] = useState('')
@@ -52,17 +53,17 @@ const PostDetails = () => {
 		closeModal()
 	}
 
-	useEffect(() => {
+	/*useEffect(() => {
 		const handlePostdetails = async () => {
 			const response = await httpGetPostById(params.id)
 			setpostdetails(response.data)
 		}
 		handlePostdetails()
-	}, [])
+	}, [])*/
 
 	if (!postdetails) {
 		return (
-			<p className='w-[25%] mt-[40%] mx-auto text-xl text-center font-medium md:mt-[26%]'>
+			<p className='w-[100%] mt-[40%] mx-auto text-white text-xl text-center font-medium md:mt-[26%]'>
 				Loading...
 			</p>
 		)
@@ -70,7 +71,7 @@ const PostDetails = () => {
 
 	const likeset = new Set(postdetails.likes)
 	return (
-		<div className='w-11/12 flex mx-auto mt-8 bg-gray-200 flex-col mb-4 border border-gray-600 drop-shadow-xl rounded-md space-y-1.5 justify-center items-center md:w-5/12'>
+		<div className='w-11/12 flex mx-auto mt-8 bg-gray-200 flex-col mb-4 border border-white drop-shadow-xl rounded-md space-y-1.5 justify-center items-center md:w-5/12'>
 			<div className='w-full flex rounded-t-md bg-gradient-to-r from-sky-400 to-blue-600 text-slate-100 px-4 pt-2 pb-1 border-b border-black items-center'>
 				<div>
 					<Link to={`/profile/${postdetails.userID}`}>
@@ -92,7 +93,7 @@ const PostDetails = () => {
 			</div>
 			<div className='w-full flex flex-col space-y-2 px-4 py-2.5 rounded-b-md bg-gray-200 text-gray-900/90 md:space-y-3'>
 				<h3 className='leading-5 text-xl text-start font-medium'>{postdetails.postTitle}</h3>
-				<p className='text-start text-base leading-5 whitespace-pre-wrap'>
+				<p className='text-start text-lg font-normal leading-5 whitespace-pre-wrap'>
 					{postdetails.postContent}
 				</p>
 			</div>
@@ -133,7 +134,18 @@ const PostDetails = () => {
 							key={i}
 							className=' w-[90%] flex justify-between items-center border border-b-gray-400 pb-1 '
 						>
-							<p className='w-[80%] text-md text-gray-900/80 leading-5'>{Comment.comment}</p>
+							<div className='flex flex-col gap-1'>
+								<div className='flex items-center gap-1.5'>
+									<img
+										src={`${Comment.userPicture}`}
+										referrerPolicy='no-referrer'
+										className='w-6 rounded-full'
+										alt='profile picture'
+									/>
+									<p className='text-lg text-gray-900 font-medium'>{Comment.userName}</p>
+								</div>
+								<p className='w-[100%] text-lg text-gray-900/80 leading-5'>{Comment.comment}</p>
+							</div>
 							{Comment.userID === user.userID && (
 								<DeleteIcon
 									color='primary'

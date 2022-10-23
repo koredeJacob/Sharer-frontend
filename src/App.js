@@ -8,7 +8,7 @@ import Signin from './pages/Signin'
 
 const App = () => {
 	return (
-		<div>
+		<div className='bg-gray-700'>
 			<Router>
 				<Routes>
 					<Route path='/' element={<Home />} />

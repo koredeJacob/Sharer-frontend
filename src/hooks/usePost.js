@@ -34,29 +34,7 @@ const usePost = () => {
 		const response = await httpUpdateLikes(id)
 	}
 
-	const deleteComment = async (postid, delcomment) => {
-		const mutatedpost = Posts.filter((post) => {
-			return post.postId === postid
-		})
-		let updatedcomments = []
-		if (mutatedpost.length === 1) {
-			updatedcomments = mutatedpost[0].comments.filter((singlecomment) => {
-				return delcomment !== singlecomment.comment
-			})
-		}
-		mutatedpost.comments = updatedcomments
-		//to be deleted once api is ready
-		const updatedposts = Posts.map((post) => {
-			if (post.postId === postid) {
-				post.comments = updatedcomments
-			}
-			return post
-		})
-		updatePosts(updatedposts)
-		//const response = await httpUpdatePost(mutatedpost)
-	}
-
-	useEffect(() => {
+	/*useEffect(() => {
 		const handleUser = async () => {
 			if (!user) {
 				const res = await httpGetUser()
@@ -68,11 +46,10 @@ const usePost = () => {
 			}
 		}
 		handleUser()
-	}, [])
+	}, [])*/
 
 	return {
 		updateLikes,
-		deleteComment,
 		getPosts
 	}
 }

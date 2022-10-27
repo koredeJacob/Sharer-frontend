@@ -16,7 +16,9 @@ const Profile = () => {
 		const handleprofile = async () => {
 			if (user) {
 				const response = await httpGetUserById(params.id)
-				setprofile(response.data)
+				if (response.status === 200) {
+					setprofile(response.data)
+				}
 			}
 		}
 		handleprofile()

@@ -28,8 +28,10 @@ const PostDetails = () => {
 		e.preventDefault()
 		if (Comment !== '') {
 			const response = await httpAddComment(postdetails.postId, Comment)
-			setpostdetails(response.data)
-			setComment('')
+			if (response.status === 200) {
+				setpostdetails(response.data)
+				setComment('')
+			}
 		}
 	}
 
@@ -43,12 +45,16 @@ const PostDetails = () => {
 
 	const updateLikes = async (id) => {
 		const response = await httpUpdateLikes(id)
-		setpostdetails(response.data)
+		if (response.status === 200) {
+			setpostdetails(response.data)
+		}
 	}
 
 	const deleteComment = async () => {
 		const response = await httpRemoveComment(postdetails.postId, delcomment)
-		setpostdetails(response.data)
+		if (response.status === 200) {
+			setpostdetails(response.data)
+		}
 		closeModal()
 	}
 
@@ -56,7 +62,9 @@ const PostDetails = () => {
 		const handlePostdetails = async () => {
 			if (user) {
 				const response = await httpGetPostById(params.id)
-				setpostdetails(response.data)
+				if (response.status === 200) {
+					setpostdetails(response.data)
+				}
 			}
 		}
 		handlePostdetails()

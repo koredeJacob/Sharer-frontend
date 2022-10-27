@@ -7,7 +7,6 @@ async function httpGetPosts() {
 		const response = await axios.get(`${REQUEST_URL}/posts`)
 		return response
 	} catch (error) {
-		console.log(error)
 		return {
 			ok: false
 		}
@@ -22,7 +21,6 @@ async function httpAddNewPost(postTitle, postContent) {
 		})
 		return response
 	} catch (error) {
-		console.log(error)
 		return {
 			ok: false
 		}
@@ -34,7 +32,6 @@ async function httpGetPostById(id) {
 		const response = await axios.get(`${REQUEST_URL}/posts/${id}`)
 		return response
 	} catch (error) {
-		console.log(error)
 		return {
 			ok: false
 		}
@@ -46,7 +43,6 @@ async function httpUpdateLikes(id) {
 		const response = await axios.put(`${REQUEST_URL}/posts/updatelikes/${id}`)
 		return response
 	} catch (error) {
-		console.log(error)
 		return {
 			ok: false
 		}
@@ -58,7 +54,6 @@ async function httpDeletePost(id) {
 		const response = await axios.delete(`${REQUEST_URL}/posts/${id}`)
 		return response
 	} catch (error) {
-		console.log(error)
 		return {
 			ok: false
 		}
@@ -72,7 +67,6 @@ async function httpAddComment(id, comment) {
 		})
 		return response
 	} catch (error) {
-		console.log(error)
 		return {
 			ok: false
 		}
@@ -86,7 +80,6 @@ async function httpRemoveComment(id, commentid) {
 		})
 		return response
 	} catch (error) {
-		console.log(error)
 		return {
 			ok: false
 		}
@@ -98,7 +91,6 @@ async function httpGetUser() {
 		const response = await axios.get(`${REQUEST_URL}/users/user`)
 		return response
 	} catch (error) {
-		console.log(error)
 		return {
 			ok: false
 		}
@@ -110,7 +102,6 @@ async function httpsignin() {
 		const response = await axios.get(`${REQUEST_URL}/auth/google`)
 		return response
 	} catch (error) {
-		console.log(error)
 		return {
 			ok: false
 		}
@@ -122,7 +113,6 @@ async function httpsignout() {
 		const response = await axios.get(`${REQUEST_URL}/auth/logout`)
 		return response
 	} catch (error) {
-		console.log(error)
 		return {
 			ok: false
 		}
@@ -134,7 +124,6 @@ async function httpGetUserById(id) {
 		const response = await axios.get(`${REQUEST_URL}/users/${id}`)
 		return response
 	} catch (error) {
-		console.log(error)
 		return {
 			ok: false
 		}

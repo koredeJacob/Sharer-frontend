@@ -9,7 +9,9 @@ const usePost = () => {
 
 	const getPosts = async () => {
 		const fetchedPosts = await httpGetPosts()
-		updatePosts(fetchedPosts.data)
+		if (fetchedPosts.status === 200) {
+			updatePosts(fetchedPosts.data)
+		}
 	}
 
 	const updateLikes = async (id) => {
@@ -37,11 +39,10 @@ const usePost = () => {
 		const handleUser = async () => {
 			if (!user) {
 				const res = await httpGetUser()
-				updateUser(res.data)
-				console.log('1 ', user)
-				console.log('called navigate')
+				if (res.status === 200) {
+					updateUser(res.data)
+				}
 				navigate('/signin')
-				console.log('3', user)
 			}
 		}
 		handleUser()

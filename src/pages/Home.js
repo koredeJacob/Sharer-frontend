@@ -40,7 +40,7 @@ const Home = () => {
 					/>
 				)
 			})}
-			<div className='fixed top-[89vh] left-[75%] z-10'>
+			<div className='fixed top-[85%] left-[75%] z-10'>
 				<Link to='/newpost'>
 					<AddBoxIcon color='primary' sx={{ fontSize: '50px' }} />
 				</Link>

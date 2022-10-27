@@ -81,7 +81,7 @@ const PostDetails = () => {
 	const likeset = new Set(postdetails.likes)
 	return (
 		<div className='w-11/12 flex mx-auto mt-8 bg-gray-200 flex-col mb-4 border border-white drop-shadow-xl rounded-md space-y-1.5 justify-center items-center md:w-5/12'>
-			<div className='w-full flex rounded-t-md bg-gradient-to-r justify-between from-sky-400 to-blue-600 text-slate-100 px-2 pt-2 pb-2 border-b border-black items-center'>
+			<div className='w-full flex rounded-t-md bg-gradient-to-r justify-between from-sky-400 to-blue-600 text-slate-100 px-4 py-2 border-b border-black items-center'>
 				<div className='flex gap-2 items-center '>
 					<Link to={`/profile/${postdetails.userID}`}>
 						<img
@@ -124,7 +124,7 @@ const PostDetails = () => {
 						onChange={(e) => setComment(e.target.value)}
 						placeholder=' Add Comment'
 						maxLength={120}
-						className='w-8/12 border border-blue-500 '
+						className='w-8/12 pl-2 border border-blue-500 '
 					/>
 					<input
 						value='comment'

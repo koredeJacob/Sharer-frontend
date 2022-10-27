@@ -50,7 +50,7 @@ const Newpost = () => {
 					</label>
 					<br />
 					<textarea
-						className='w-full h-44 md:h-52 bg-gray-100 rounded-[16px] px-3 px-3 text-gray-600 border border-gray-300'
+						className='w-full h-44 md:h-52 bg-gray-100 rounded-[16px] px-3 text-gray-600 border border-gray-300'
 						id='content'
 						value={postContent}
 						placeholder='Post Content'

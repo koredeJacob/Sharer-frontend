@@ -18,7 +18,7 @@ const Signin = () => {
 	return (
 		<div className='w-8/12 flex flex-col bg-gray-100 mx-auto mt-32 space-y-4 px-2 pb-3 pt-2 drop-shadow-xl border border-grey-900 justify-center text-xl'>
 			<h4 className='font-normal text-center'>
-				Welcome To <span className='text-xl font-bold'>IdeaShare</span>😊.A website to share
+				Welcome To <span className='text-xl font-bold'>Sharer</span>😊.A website to share thoughts,
 				knowledge and discuss ideas.
 			</h4>
 			<div className='flex justify-center'>

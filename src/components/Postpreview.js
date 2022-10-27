@@ -30,8 +30,8 @@ const Postpreview = ({ postid, postcontent, updateLikes }) => {
 
 	return (
 		<div className='w-full flex bg-gray-200 flex-col mb-4 border border-white drop-shadow-xl rounded-md space-y-1.5 justify-center items-center md:w-11/12'>
-			<div className='w-full flex rounded-t-md bg-gradient-to-r from-sky-400 to-blue-600 text-slate-100 px-4 pt-2 pb-1 border-b border-black items-center'>
-				<div>
+			<div className='w-full flex rounded-t-md bg-gradient-to-r justify-between from-sky-400 to-blue-600 text-slate-100 px-2 pt-2 pb-2 border-b border-black items-center'>
+				<div className='flex gap-2 items-center '>
 					<Link to={`/profile/${postcontent.userID}`}>
 						<img
 							src={`${postcontent.profilePicture}`}
@@ -40,14 +40,11 @@ const Postpreview = ({ postid, postcontent, updateLikes }) => {
 							alt='profile picture'
 						/>
 					</Link>
+					<h5 className='capitalize text-base font-medium'>{postcontent.profileName}</h5>
 				</div>
-				<h5 className='ml-3 capitalize text-base font-medium'>{postcontent.profileName}</h5>
-				<p className='ml-14 pl-2 md:ml-36 lg:ml-50 2xl:ml-64 text-xs font-medium'>{`${formatDistanceToNow(
-					parseISO(postcontent.postDate),
-					{
-						addSuffix: true
-					}
-				)}`}</p>
+				<p className='text-xs font-medium'>{`${formatDistanceToNow(parseISO(postcontent.postDate), {
+					addSuffix: true
+				})}`}</p>
 			</div>
 			<Link className='w-full' to={`/post/${postid}`}>
 				<div className='w-full px-4 py-2 rounded-b-md bg-gray-200 text-gray-900/90 flex flex-col space-y-2 md:space-y-3'>

@@ -10,14 +10,14 @@ const Home = () => {
 	const { user, Posts } = useContext(AppContext)
 	const { updateLikes, getPosts } = usePost()
 
-	/*useEffect(() => {
+	useEffect(() => {
 		const handlePosts = async () => {
 			if (user) {
 				await getPosts()
 			}
 		}
 		handlePosts()
-	}, [])*/
+	}, [])
 
 	if (!Posts) {
 		return (

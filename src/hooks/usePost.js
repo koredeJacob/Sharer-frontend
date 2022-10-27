@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { httpGetPosts, httpUpdatePost, httpGetUser, httpUpdateLikes } from './requests'
-import posts from '../post.json'
 import { AppContext } from '../App-provider'
 
 const usePost = () => {
@@ -34,7 +33,7 @@ const usePost = () => {
 		const response = await httpUpdateLikes(id)
 	}
 
-	/*useEffect(() => {
+	useEffect(() => {
 		const handleUser = async () => {
 			if (!user) {
 				const res = await httpGetUser()
@@ -46,7 +45,7 @@ const usePost = () => {
 			}
 		}
 		handleUser()
-	}, [])*/
+	}, [])
 
 	return {
 		updateLikes,

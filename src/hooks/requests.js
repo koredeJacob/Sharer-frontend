@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const REQUEST_URL = 'http://localhost:5000/v1'
+const REQUEST_URL = '/v1'
 
 async function httpGetPosts() {
 	try {
@@ -105,7 +105,7 @@ async function httpGetUser() {
 	}
 }
 
-async function signin() {
+async function httpsignin() {
 	try {
 		const response = await axios.get(`${REQUEST_URL}/auth/google`)
 		return response
@@ -117,9 +117,10 @@ async function signin() {
 	}
 }
 
-async function signout() {
+async function httpsignout() {
 	try {
 		const response = await axios.get(`${REQUEST_URL}/auth/logout`)
+		return response
 	} catch (error) {
 		console.log(error)
 		return {
@@ -150,6 +151,6 @@ export {
 	httpRemoveComment,
 	httpGetUser,
 	httpGetUserById,
-	signin,
-	signout
+	httpsignin,
+	httpsignout
 }

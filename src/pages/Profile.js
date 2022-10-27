@@ -41,7 +41,7 @@ const Profile = () => {
 		setprofileposts(newarr)
 	}, [Posts])
 
-	if (!profileposts) {
+	if (!profileposts || !profile) {
 		return (
 			<p className='w-[100%] mt-[40%] mx-auto text-white text-xl text-center font-medium md:mt-[26%]'>
 				Loading...

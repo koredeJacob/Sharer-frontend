@@ -15,8 +15,7 @@ import {
 } from '../hooks/requests'
 
 const PostDetails = () => {
-	const { Posts } = useContext(AppContext)
-	const [postdetails, setpostdetails] = useState(Posts[0])
+	const [postdetails, setpostdetails] = useState(null)
 	const [Comment, setComment] = useState('')
 	const [modalIsOpen, setIsOpen] = useState(false)
 	const [delcomment, setdelcomment] = useState('')
@@ -53,13 +52,15 @@ const PostDetails = () => {
 		closeModal()
 	}
 
-	/*useEffect(() => {
+	useEffect(() => {
 		const handlePostdetails = async () => {
-			const response = await httpGetPostById(params.id)
-			setpostdetails(response.data)
+			if (user) {
+				const response = await httpGetPostById(params.id)
+				setpostdetails(response.data)
+			}
 		}
 		handlePostdetails()
-	}, [])*/
+	}, [])
 
 	if (!postdetails) {
 		return (
@@ -72,8 +73,8 @@ const PostDetails = () => {
 	const likeset = new Set(postdetails.likes)
 	return (
 		<div className='w-11/12 flex mx-auto mt-8 bg-gray-200 flex-col mb-4 border border-white drop-shadow-xl rounded-md space-y-1.5 justify-center items-center md:w-5/12'>
-			<div className='w-full flex rounded-t-md bg-gradient-to-r from-sky-400 to-blue-600 text-slate-100 px-4 pt-2 pb-1 border-b border-black items-center'>
-				<div>
+			<div className='w-full flex rounded-t-md bg-gradient-to-r justify-between from-sky-400 to-blue-600 text-slate-100 px-2 pt-2 pb-2 border-b border-black items-center'>
+				<div className='flex gap-2 items-center '>
 					<Link to={`/profile/${postdetails.userID}`}>
 						<img
 							src={`${postdetails.profilePicture}`}
@@ -82,14 +83,11 @@ const PostDetails = () => {
 							alt='profile picture'
 						/>
 					</Link>
+					<h5 className='capitalize text-base font-medium'>{postdetails.profileName}</h5>
 				</div>
-				<h5 className='ml-3 capitalize text-base font-medium'>{postdetails.profileName}</h5>
-				<p className='ml-14 pl-3 md:ml-24 lg:ml-44 text-xs font-medium'>{`${formatDistanceToNow(
-					parseISO(postdetails.postDate),
-					{
-						addSuffix: true
-					}
-				)}`}</p>
+				<p className='text-xs font-medium'>{`${formatDistanceToNow(parseISO(postdetails.postDate), {
+					addSuffix: true
+				})}`}</p>
 			</div>
 			<div className='w-full flex flex-col space-y-2 px-4 py-2.5 rounded-b-md bg-gray-200 text-gray-900/90 md:space-y-3'>
 				<h3 className='leading-5 text-xl text-start font-medium'>{postdetails.postTitle}</h3>

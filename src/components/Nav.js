@@ -26,7 +26,7 @@ const Nav = ({ ProfilePic }) => {
 					/>
 				</div>
 			</Link>
-			<h2 className='text-2xl font-medium text-gray-700 font-cursive'>sharer</h2>
+			<h2 className='text-2xl font-medium text-gray-700'>sharer</h2>
 			<button
 				onClick={signout}
 				className='text-lg text-gray-700 font-normal drop-shadow-lg border border-gray-700 bg-blue-500 px-2 py-1.5 rounded-md'
